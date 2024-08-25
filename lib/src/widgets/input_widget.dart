@@ -37,7 +37,7 @@ enum PhoneInputSelectorType { DROPDOWN, BOTTOM_SHEET, DIALOG }
 /// available countries to match the [countries] specified.
 class InternationalPhoneNumberInput extends StatefulWidget {
   final SelectorConfig selectorConfig;
-
+  final TextDirection? textDirection;
   final ValueChanged<PhoneNumber>? onInputChanged;
   final ValueChanged<bool>? onInputValidated;
 
@@ -91,6 +91,7 @@ class InternationalPhoneNumberInput extends StatefulWidget {
       this.selectorConfig = const SelectorConfig(),
       required this.onInputChanged,
       this.onInputValidated,
+      this.textDirection = TextDirection.rtl,
       this.onSubmit,
       this.onFieldSubmitted,
       this.validator,
@@ -421,7 +422,7 @@ class _InputWidgetView
           Flexible(
             child: TextFormField(
               key: widget.fieldKey ?? Key(TestHelper.TextInputKeyValue),
-              textDirection: TextDirection.ltr,
+              textDirection: widget.textDirection ?? TextDirection.ltr,
               controller: state.controller,
               cursorColor: widget.cursorColor,
               focusNode: widget.focusNode,
